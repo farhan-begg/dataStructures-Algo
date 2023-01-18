@@ -188,4 +188,45 @@ const countUniqueValues = (array) => {
 
 
 }
-console.log(countUniqueValues([-1, 1, 2, 3,]))
+// console.log(countUniqueValues([-1, 1, 2, 3,]))
+
+
+
+// get max number of values that equal to the given target 
+const maxSubarraySums = (arr, num) => {
+
+  var max = -Infinity;
+  for (let i = 0; i < arr.length - num + 1; i++) {
+    temp = 0;
+    for (let j = 0; j < num; j++) {
+      temp += arr[i + j];
+    }
+    if (temp > max) {
+      max = temp;
+    }
+  }
+  return max;
+}
+
+console.log(maxSubarraySums([2, 5, 6, 1, 21, 2, 1, 3], 2))
+
+
+// O(N) Time Complexity 
+const maxSubarraySum = (arr, num) => {
+  let maxSum = 0;
+  let tempSum = 0;
+  if (num > arr.length) {
+    return null
+  }
+  for (let i = 0; i < num; i++) {
+    maxSum += arr[i]
+  }
+  tempSum = maxSum;
+  for (let i = num; i < arr.length; i++) {
+    tempSum = tempSum - arr[i - num] + arr[i];
+    maxSum = Math.max(maxSum, tempSum);
+  }
+  return maxSum;
+}
+
+console.log(maxSubarraySum([2, 5, 6, 1, 21, 2, 1, 3], 2))
