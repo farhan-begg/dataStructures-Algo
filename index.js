@@ -244,7 +244,26 @@ const BinarySearch = (arr, elem) => {
     }
     middle = Math.floor((start + end) / 2)
   }
+}
 
+// Naive String Search
+// loop over the longer string
+// loop over the shorter string
+// if characters do match keep going
+// if you complete the inner loop and find a match, increment the count of matches
+// return the count
 
-
+const naiveSearch = (long, short) => {
+  let count = 0
+  for (let i = 0; i < long.length; i++) {
+    for (j = 0; j < short.length; j++) {
+      if (short[j] !== long[i + j]) {
+        break;
+      }
+      if (j === short.length - 1) {
+        count++;
+      }
+    }
+  }
+  return count
 }
